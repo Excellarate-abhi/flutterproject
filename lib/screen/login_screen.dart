@@ -1,8 +1,11 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutternewproject/bloc/login_bloc.dart';
 import 'package:flutternewproject/screen/register_screen.dart';
-import 'package:provider/provider.dart';
+
+import '../widgets/custom_button.dart';
+import '../widgets/custom_textfield.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -12,11 +15,94 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  LoginBloc? _loginBloc;
+  final TextEditingController email =
+  TextEditingController(text: "");
+  final TextEditingController password =
+  TextEditingController(text: "");
+
+  @override
+  void initState() {
+    super.initState();
+    _loginBloc = BlocProvider.of<LoginBloc>(context);
+  }
 
   @override
   Widget build(BuildContext context) {
-    final bloc = Provider.of<LoginBloc>(context,listen: false);
+    return Scaffold(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 170, horizontal: 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Center(
+                child: Text(
+                  "Login Screen",
+                  style: TextStyle(
+                      fontSize: 50,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold),
+                )),
+            const SizedBox(height: 40.4),
+            CustomTextField(
+              controller: email,
+              obscure: false,
+            ),
+            const SizedBox(height: 20.4),
+            CustomTextField(
+              controller: email,
+              obscure: true,
+            ),
+            const SizedBox(height: 20.4),
+            BlocListener<LoginBloc, LoginState>(
+              listener: (context, state) {
+                if (state is AuthLoading) {
+                  const Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.blue,
+                      ));
+                } else if (state is AuthSuccessful) {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const RegisterScreen();
+                  }));
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text(
+                        'Welcome',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                            fontSize: 30),
+                      )));
+                } else if (state is AuthError) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text(
+                        'Error',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                            fontSize: 30),
+                      )));
+                }
+              },
+              child: CustomButton(
+                onPressed: () {
+                  _loginBloc!.add(
+                      LoginEvent(email: email.text, password: password.text));
+                },
+                text: "Login",
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+/*GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    final bloc = Provider.of<LoginBloc>(context, listen: false);
     return Scaffold(
       body: Form(
         key: _formKey,
@@ -34,35 +120,33 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 30),
                 StreamBuilder<Object>(
-                  stream: bloc.loginEmail,
-                  builder: (context, snapshot) {
-                    return TextField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                          hintText: "Enter Email",
-                          labelText: "Email",
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20))),
-                      onChanged: (value) => bloc.changeLoginEmail,
-                    );
-                  }
-                ),
+                    stream: bloc.loginEmail,
+                    builder: (context, snapshot) {
+                      return TextField(
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                            hintText: "Enter Email",
+                            labelText: "Email",
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        onChanged: (value) => bloc.changeLoginEmail,
+                      );
+                    }),
                 const SizedBox(height: 30),
                 StreamBuilder<Object>(
-                  stream: bloc.loginPassword,
-                  builder: (context, snapshot) {
-                    return TextField(
-                      keyboardType: TextInputType.emailAddress,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          hintText: "Enter Password",
-                          labelText: "Password",
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20))),
-                      onChanged: (value) => bloc.changeLoginPassword,
-                    );
-                  }
-                ),
+                    stream: bloc.loginPassword,
+                    builder: (context, snapshot) {
+                      return TextField(
+                        keyboardType: TextInputType.emailAddress,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                            hintText: "Enter Password",
+                            labelText: "Password",
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        onChanged: (value) => bloc.changeLoginPassword,
+                      );
+                    }),
                 const SizedBox(height: 30),
                 loginButton(),
                 const SizedBox(height: 30),
@@ -76,8 +160,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             text: "Register here",
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                    builder: (context) =>  RegisterScreen()));
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            RegisterScreen()));
                               })
                       ]),
                 )
@@ -107,5 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-  }
-}
+  }*/
+
+
+

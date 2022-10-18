@@ -1,22 +1,25 @@
-import 'package:rxdart/subjects.dart';
+import 'dart:async';
 
-class LoginBloc {
-  final _loginEmail  = BehaviorSubject<String>();
-  final _loginPassword  = BehaviorSubject<String>();
+import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutternewproject/repository/repo_login.dart';
+import 'package:meta/meta.dart';
 
-  //getters
-  Stream<String> get loginEmail => _loginEmail.stream;
-  Stream<String> get loginPassword => _loginPassword.stream;
+part 'login_event.dart';
+part 'login_state.dart';
 
-
-  //setters
-  Function(String) get changeLoginEmail => _loginEmail.sink.add;
-  Function(String) get changeLoginPassword => _loginPassword.sink.add;
-
-
-  void dispose(){
-    _loginEmail.close();
-    _loginPassword.close();
+class LoginBloc extends Bloc<AuthEvent, LoginState> {
+  final AuthRepo _authRepo;
+  LoginBloc(this._authRepo) : super(AuthLoading()) {
+    on<LoginEvent>((event, emit) async {
+      emit(AuthLoading());
+      final result = await _authRepo.login(event.email, event.password);
+      if (result != "user not found") {
+        emit(AuthSuccessful());
+      }
+      if (result == "user not found") {
+        emit(AuthError("Missing password OR  user not found"));
+      }
+    });
   }
-
 }
