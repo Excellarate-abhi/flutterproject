@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		trDfnc28wcDP77aAVyyg/MWAIc0=
+		sgxx+MfGZQ6O9z/7N3Y/jyQCu9w=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,11 +54,11 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		iAdsF7T5dmVqb5ANyPI0xkbt9mg=
+		5S8AZUlC/2/4dkSS+NONTHKVptc=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		oG5/OGn+vw7vp/nu5DUDoZJ4nFc=
+		IipSxF3j27x3+TyETcpCnrTSu1k=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -66,7 +66,15 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		fBG0l+mNjd2mCnIp+HJWBxKIwIM=
+		ncdqo7oN6w0+j+PyYLbbRaTrS8c=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/login.png</key>
+		<data>
+		56nBRvXZH2AIfnqgCwSmxQ7CIbc=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/register.png</key>
+		<data>
+		s9ikrN+km4W8usAREqO9YvQPtEY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -78,7 +86,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		bbXSL6h59Jo0mC+1m2Vk055dSCs=
+		1k2x1ywyrNE/BIHcAO4Qouj6YZM=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -261,7 +269,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			5xU9NdTJIeNBrKEHtxq08WzhaCW6yDfEg2njwAToGfE=
+			jM7+TvDsXNs4j8DKz6UFSnSXdBZKakg/bjXBo3p4+kU=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -275,14 +283,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			5cTC8/283GQyDY0J73UuPsUj0TzWyFUU64sfOBYkZYA=
+			G5bRg2iAKe7xKBBKQ1fbnoGX8MOAi2bfbVUVr9A6EPg=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Sps95+7JukayebvM0TLjL1LW1VXXndpKp/O8tOm9ZR8=
+			W+kUrIjlvqTX6V9F6XqOl4peyYTT2UqYng8MFce4rH0=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -296,7 +304,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			+gBWWBE4NwUwkp+S6DLUl+BUnd9JWYmxYi7D1kNXEd0=
+			Jr0aDiJ8g6x1rW6zsLG32MjHNyHTLPMHHma8oeIrraw=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/login.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			J/9VXivSPmhEvDFQTDtmjEvCfNjHtJfav9wh5Sm2OUw=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/register.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			rQSyT/S0cZ+EDAgndsfqyn4F79ylPV0Yp6IngMmxBG0=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -317,7 +339,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			2qxmCxUAuYRyLyVpeQzAKrdMx3SzSMcpYcg0di8A8ec=
+			SunrwkPne/tYa/fnE9MypRPrdI890D381A4mu4vD1iE=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => LoginBloc(AuthRepo())),
-        //BlocProvider<RegisterBloc>(create: (context) => RegisterBloc()),
+        //BlocProvider(create: (context) => RegisterBloc()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
