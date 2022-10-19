@@ -72,26 +72,63 @@ class _LoginScreenState extends State<LoginScreen> {
                         obscure: true,
                       ),
                       const SizedBox(height: 40),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Sign In',
-                            style: TextStyle(
-                                color: Color(0xff4c505b),
-                                fontSize: 27,
-                                fontWeight: FontWeight.w700),
-                          ),
-                          CircleAvatar(
-                            radius: 30,
-                            backgroundColor: Color(0xff4c505b),
-                            child: IconButton(
-                              color: Colors.white,
-                              onPressed: () {},
-                              icon: Icon(Icons.arrow_forward),
+                      BlocListener<LoginBloc, LoginState>(
+                        listener: (context, state) {
+                          if (state is AuthLoading) {
+                            const Center(
+                                child: CircularProgressIndicator(
+                              color: Colors.blue,
+                            ));
+                          } else if (state is AuthSuccessful) {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const HomePage();
+                            }));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                                    content: Text(
+                              'Welcome',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue,
+                                  fontSize: 30),
+                            )));
+                          } else if (state is AuthError) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                                    content: Text(
+                              'Error',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue,
+                                  fontSize: 30),
+                            )));
+                          }
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Sign In',
+                              style: TextStyle(
+                                  color: Color(0xff4c505b),
+                                  fontSize: 27,
+                                  fontWeight: FontWeight.w700),
                             ),
-                          ),
-                        ],
+                            CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Color(0xff4c505b),
+                              child: IconButton(
+                                color: Colors.white,
+                                onPressed: () {
+                                  _loginBloc!.add(
+                                      LoginEvent(email: email.text, password: password.text));
+                                },
+                                icon: Icon(Icons.arrow_forward),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(height: 50),
                       Align(
@@ -113,10 +150,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                         ),
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
-                                            Navigator.of(context).pushReplacement(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        RegisterScreen()));
+                                            Navigator.of(context)
+                                                .pushReplacement(
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            RegisterScreen()));
                                           })
                                   ]),
                             ),
@@ -130,95 +168,6 @@ class _LoginScreenState extends State<LoginScreen> {
             )
           ],
         ),
-        /*body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(vertical: 170, horizontal: 10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Center(
-                  child: Text(
-                "Login Screen",
-                style: TextStyle(
-                    fontSize: 50,
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold),
-              )),
-              const SizedBox(height: 40.4),
-              CustomTextField(
-                controller: email,
-                hint: "Enter Email",
-                label: "Email",
-                inputType: TextInputType.emailAddress,
-                obscure: false,
-              ),
-              const SizedBox(height: 20.4),
-              CustomTextField(
-                controller: password,
-                hint: "Enter Password",
-                label: "Password",
-                inputType: TextInputType.emailAddress,
-                obscure: true,
-              ),
-              const SizedBox(height: 20.4),
-              BlocListener<LoginBloc, LoginState>(
-                listener: (context, state) {
-                  if (state is AuthLoading) {
-                    const Center(
-                        child: CircularProgressIndicator(
-                      color: Colors.blue,
-                    ));
-                  } else if (state is AuthSuccessful) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const HomePage();
-                    }));
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text(
-                      'Welcome',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                          fontSize: 30),
-                    )));
-                  } else if (state is AuthError) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text(
-                      'Error',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                          fontSize: 30),
-                    )));
-                  }
-                },
-                child: CustomButton(
-                  onPressed: () {
-                    _loginBloc!.add(
-                        LoginEvent(email: email.text, password: password.text));
-                  },
-                  text: "Login",
-                ),
-              ),
-              const SizedBox(height: 20.4),
-              RichText(
-                text: TextSpan(
-                    style: TextStyle(color: Colors.red.shade800),
-                    children: [
-                      TextSpan(text: "Need an Account?"),
-                      WidgetSpan(child: SizedBox(width: 3.5)),
-                      TextSpan(
-                          text: "Register here",
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) => RegisterScreen()));
-                            })
-                    ]),
-              )
-            ],
-          ),
-        ),*/
       ),
     );
   }
