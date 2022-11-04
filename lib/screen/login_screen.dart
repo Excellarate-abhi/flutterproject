@@ -1,11 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutternewproject/bloc/login_bloc.dart';
+import 'package:flutternewproject/bloc/Login/login_bloc.dart';
 import 'package:flutternewproject/screen/home.dart';
 import 'package:flutternewproject/screen/register_screen.dart';
-
-import '../widgets/custom_button.dart';
 import '../widgets/custom_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,10 +15,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   LoginBloc? _loginBloc;
-  final TextEditingController email =
-      TextEditingController(text: "test22@user.com");
-  final TextEditingController password =
-      TextEditingController(text: "test2123");
+  final TextEditingController email = TextEditingController(text: "");
+  final TextEditingController password = TextEditingController(text: "");
 
   @override
   void initState() {
@@ -82,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           } else if (state is AuthSuccessful) {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              return const HomePage();
+                              return  HomePage();
                             }));
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(const SnackBar(
@@ -121,8 +117,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: IconButton(
                                 color: Colors.white,
                                 onPressed: () {
-                                  _loginBloc!.add(
-                                      LoginEvent(email: email.text, password: password.text));
+                                  _loginBloc!.add(LoginEvent(
+                                      email: email.text,
+                                      password: password.text));
                                 },
                                 icon: Icon(Icons.arrow_forward),
                               ),

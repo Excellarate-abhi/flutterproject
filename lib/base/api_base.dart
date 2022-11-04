@@ -9,7 +9,14 @@ class ApiBase {
     final response = await http.post(Uri.parse(apiUrl + url), body: body);
     var responseJson = _returnResponse(response);
     print(responseJson);
-    return responseJson["token"];
+    return responseJson;
+  }
+
+  Future<dynamic> postRegister(String url, dynamic body) async {
+    final response = await http.post(Uri.parse(apiUrl + url), body: body);
+    var responseJson = _returnResponse(response);
+    print(responseJson);
+    return responseJson;
   }
 
   Future<dynamic> getData(String url) async {
@@ -28,6 +35,10 @@ class ApiBase {
 _returnResponse(http.Response response) {
   switch (response.statusCode) {
     case 200:
+      var responseJson = jsonDecode(response.body.toString());
+      return responseJson;
+
+    case 201:
       var responseJson = jsonDecode(response.body.toString());
       return responseJson;
 
