@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutternewproject/bloc/Login/login_bloc.dart';
+import 'package:flutternewproject/bloc/Planner/planner_bloc.dart';
 import 'package:flutternewproject/bloc/Register/register_bloc.dart';
 import 'package:flutternewproject/repository/repo_login.dart';
+import 'package:flutternewproject/repository/repo_planner.dart';
 import 'package:flutternewproject/repository/repo_register.dart';
 import 'package:flutternewproject/screen/login_screen.dart';
 
@@ -20,9 +22,10 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => LoginBloc(AuthRepo())),
         BlocProvider(create: (context) => RegisterBloc(RegisterRepo())),
+        BlocProvider(create: (context) => PlannerBloc(PlannerRepo())),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Wisetail',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),

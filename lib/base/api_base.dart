@@ -19,6 +19,15 @@ class ApiBase {
     return responseJson;
   }
 
+  Future<dynamic> getPlannerData(String url) async {
+    final response = await http.post(Uri.parse(apiUrl + url));
+    var responseJson = _returnResponse(response);
+    print(responseJson);
+    return responseJson;
+  }
+
+
+
   Future<dynamic> getData(String url) async {
     var responseJson;
     try {
@@ -30,6 +39,7 @@ class ApiBase {
     }
     return responseJson['data'];
   }
+
 }
 
 _returnResponse(http.Response response) {

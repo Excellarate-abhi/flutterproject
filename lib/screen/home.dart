@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
       case 2:
         return const Action_Fragment();
       case 3:
-        return const History_Fragment();
+        return const HistoryFragment();
     }
   }
 
