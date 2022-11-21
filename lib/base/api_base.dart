@@ -19,14 +19,17 @@ class ApiBase {
     return responseJson;
   }
 
-  Future<dynamic> getPlannerData(String url) async {
-    final response = await http.post(Uri.parse(apiUrl + url));
+  Future<dynamic> getMyDayData(String url, String? userId) async {
+    Map<String, String?> qParams = {
+      'userid': userId,
+    };
+    String queryString = Uri(queryParameters: qParams).query;
+    var requestUrl = '$apiUrl$url?$queryString';
+    final uri = Uri.parse(requestUrl);
+    var response = await http.get(uri);
     var responseJson = _returnResponse(response);
-    print(responseJson);
     return responseJson;
   }
-
-
 
   Future<dynamic> getData(String url) async {
     var responseJson;
@@ -39,7 +42,6 @@ class ApiBase {
     }
     return responseJson['data'];
   }
-
 }
 
 _returnResponse(http.Response response) {

@@ -15,8 +15,10 @@ class _HistoryFragmentState extends State<HistoryFragment> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text(
-        'Hello Anu',
+      child: Center(
+        child: Text(
+          'Hi History',
+        ),
       ),
     );
   }

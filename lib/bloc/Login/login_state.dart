@@ -24,3 +24,4 @@ class AuthError extends LoginState {
   @override
   List<Object?> get props => [msgError];
 }
+
